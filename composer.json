@@ -1,0 +1,21 @@
+{
+    "name": "Sticker Price Calculator",
+    "description": "Sticker Price Calculator Development Task",
+    "authors": [
+      {
+        "name": "Hafiz Siddiq Umer",
+        "email": "hafiz.siddiq.umer@gmail.com",
+        "role": "Developer"
+      }
+    ],
+    "require": {
+      "php": "~7.0"
+    },
+    "require-dev": {
+      "fzaninotto/faker": "~1.8.0"
+    },
+    "config": {
+      "optimize-autoloader": true
+    },
+    "minimum-stability": "stable"
+  }

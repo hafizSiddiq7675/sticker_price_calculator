@@ -1,0 +1,7 @@
+**/*.sw?
+node_modules/
+vendor/
+
+private/database_credentials.php
+system_log/*
+errors/*.log

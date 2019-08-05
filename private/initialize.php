@@ -37,7 +37,6 @@ $site_end = strpos($_SERVER['SCRIPT_NAME'], '/site') + 5;
 $doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $site_end);
 define("WWW_ROOT", $doc_root);
 
-
 require_once('database.php');
 
 ini_set('log_errors', 'On');

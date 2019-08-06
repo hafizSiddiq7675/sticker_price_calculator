@@ -26,7 +26,7 @@ require_once '../private/initialize.php';
 
     <!-- Begin page content -->
     <main role="main" class="container">
-        <form action="/action_page.php" class="needs-validation" novalidate>
+        <form action="/action_page.php" id="price_cal_form">
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
@@ -36,62 +36,71 @@ require_once '../private/initialize.php';
                             <option value="square_circle">Square / Circle</option>
                             <option value="ractangle">Ractangle</option>
                         </select>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
                 </div>
             </div>
             <div id='height_width_div' style="display:none">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="height">Enter Height</label>
-                        <input type="text" class="form-control" id="height" placeholder="Enter Height" name="height_rec">
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="height">Enter Height</label>
+                            <input type="text" class="form-control" id="height" placeholder="Enter Height" name="height_rec">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="width">Enter Width</label>
+                            <input type="text" class="form-control" id="width" placeholder="Enter Width" name="wdth_rec">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="width">Enter Quantity</label>
+                            <input type="text" class="form-control" id="quantity_rec" placeholder="Enter Quantity" name="quantity_rec">
+                            <span class="error">The minimum quantity is 50</span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="width">Enter Width</label>
-                        <input type="text" class="form-control" id="width" placeholder="Enter Width" name="wdth_rec">
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
-                    </div>
-                </div>
-            </div>
             </div>
             <div id="width_div" style="display:none">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="height">Enter Width</label>
-                        <input type="text" class="form-control" id="width" placeholder="Enter Width" name="width_sq_cir">
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="height">Enter Width</label>
+                            <input type="text" class="form-control" id="width" placeholder="Enter Width" name="width_sq_cir">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="height">Enter Quantity</label>
+                            <input type="text" class="form-control" id="quantity_sq_cir" placeholder="Enter Quantity" name="quantity_sq_cir">
+                            <span class="error">The minimum quantity is 50</span>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
             <button type="button" class="btn btn-primary" id="cal_price">Calculate Price</button>
             <hr>
             <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">widh with bleed (mm)</th>
-      <th scope="col">height with bleed (mm)</th>
-      <th scope="col">stickers per row</th>
-      <th scope="col">stikcer per row rounded</th>
-      <th scope="col">no of rows needed in mtr</th>
-      <th scope="col">hiefht in mtr needed</th>
-      <th scope="col">price in total sq.m</th>
-      <th scope="col">price total inc min charge</th>
-    </tr>
-  </thead>
-</table>
-<center>
-  <button type="submit" class="btn btn-success" id="savePrice" style="display:none">Save Price</button>
-  </center>
+                <thead>
+                    <tr>
+                        <th>widh with bleed (mm)</th>
+                        <th>height with bleed (mm)</th>
+                        <th>stickers per row</th>
+                        <th>stikcer per row rounded</th>
+                        <th>no of rows needed in mtr</th>
+                        <th>hiefht in mtr needed</th>
+                        <th>price in total sq.m</th>
+                        <th>price total inc min charge</th>
+                    </tr>
+                </thead>
+                <tbody id="calculations">
+
+                </tbody>
+            </table>
+            <center>
+                <button type="submit" class="btn btn-success" id="savePrice" style="display:none">Save Price</button>
+            </center>
 
         </form>
         </div>

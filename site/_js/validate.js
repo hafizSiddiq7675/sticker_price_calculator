@@ -1,6 +1,5 @@
 // Disable form submissions if there are invalid fields
 (function() {
-    'use strict';
     window.addEventListener('load', function() {
       // Get the forms we want to add validation styles to
       var forms = document.getElementsByClassName('needs-validation');
@@ -16,3 +15,7 @@
       });
     }, false);
   })();
+  $(document).ready(function()
+  {
+    
+  });

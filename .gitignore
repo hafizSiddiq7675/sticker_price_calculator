@@ -3,5 +3,6 @@ node_modules/
 vendor/
 
 private/database_credentials.php
+private/class_library/Backup.php
 system_log/*
 errors/*.log

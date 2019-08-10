@@ -38,22 +38,84 @@ $(document).ready(function()
             },
             buildCalTable: function()
             {
+                let qty = 0;
                 if($('#height_width_div').is(':visible')) 
                 {
-                    let qty = $('#quantity_rec').val();
+                    qty = $('#quantity_rec').val();
                     
                 }
-                let tr = '';
-                tr += '<tr>';
-                tr += '<td>test</td>';
-                tr += '<td>test</td>';
-                tr += '<td>test</td>';
-                tr += '<td>test</td>';
-                tr += '<td>test</td>';
-                tr += '<td>test</td>';
-                tr += '<td>test</td>';
-                tr += '<td>test</td>';
+                else 
+                {
+                    qty = $('#quantity_sq_cir').val();
+                }
+                // Creating array of start to end based on qty
+               let upperLimit    = Math.ceil(qty/100)*100;
+               let lowerLimit    = Math.floor(qty/100)*100;
+               let indexes       = [];
+               for(i=50;i<(upperLimit+500);i=i+100)
+               {
+                   if(i == 50)
+                   {
+                        indexes.push(i);
+                   }
+                   else
+                   {
+                        indexes.push(Math.floor(i/100)*100)
+                   }
+               }
+
+               // Inserting the qty to appropriate index
+               $(indexes).each((index,ele) => {
+                    if(qty > ele && qty < indexes[index+1]) 
+                    {
+                        intqty = parseInt(qty);
+                        indexes.splice(index+1,0,intqty);
+                    }
+               });
+               var tr = '';
+               let width        = 0;
+               let height       = 0;
+               let price        = 0;
+               let minCharge    = 0;
+               if($('#height_width_div').is(':visible')) 
+               {
+                    width     = parseInt($('#width_rec').val());
+                    height    = parseInt($('#height_rec').val());
+                    price     = parseFloat($('#price_rec').val()).toFixed(2);
+                    minCharge = parseFloat($('#min_charge_rec').val()).toFixed(2);
+               }
+               else
+               {
+                   width     = parseInt($('#width_sq_cir').val());
+                   height    = parseInt($('#width_sq_cir').val());
+                   price     = parseFloat($('#price_sq_cir').val()).toFixed(2);
+                   minCharge = parseFloat($('#min_charge_sq_cir').val()).toFixed(2);
+               }
+
+               $.each(indexes,function(key,value){
+                let widthWithBleed      = (width + 8);
+                let heightWithBleed     = (height + 8);
+                let stickerPerRow       = parseFloat(1250/widthWithBleed).toFixed(6);
+                let stickerPerRowRound  = Math.floor(stickerPerRow); 
+                let noOfRowsInMtr       = parseFloat(value/stickerPerRowRound).toFixed(2);
+                let heightInMtr         = parseFloat((heightWithBleed * noOfRowsInMtr)/1000).toFixed(2);
+                let priceInTotSqm       = parseFloat(heightInMtr * price).toFixed(2);
+                let priceTotInCharge    = eval(priceInTotSqm) + eval(40.00);
+                tr += '<tr class="rowCal">';
+                tr += '<td>' + widthWithBleed +'</td>';
+                tr += '<td>' + heightWithBleed +'</td>';
+                tr += '<td>' + stickerPerRow + '</td>';
+                tr += '<td>' + stickerPerRowRound + '</td>';
+                tr += '<td>' + value +'</td>';
+                tr += '<td>' + noOfRowsInMtr +'</td>';
+                tr += '<td>' + heightInMtr + '</td>';
+                tr += '<td>£' + priceInTotSqm +'</td>';
+                tr += '<td>£' + parseFloat(priceTotInCharge).toFixed(2) +'</td>';
                 tr += '</tr>';
+               });
+               $('.cal-table tr.rowCal').remove();
+                $('#calculations').append(tr);
+                $('#savePrice').show();
             },
         }
 

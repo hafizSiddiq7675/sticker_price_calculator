@@ -1,5 +1,7 @@
 <?php
 require_once '../private/initialize.php';
+// $number = 93;
+// echo '<pre>'; print_r(ceil($number/100)*100); exit;
 ?>
 <!doctype html>
 <html lang="en">
@@ -44,13 +46,13 @@ require_once '../private/initialize.php';
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="height">Enter Height</label>
-                            <input type="text" class="form-control" id="height" placeholder="Enter Height" name="height_rec">
+                            <input type="text" class="form-control" id="height_rec" placeholder="Enter Height" name="height_rec">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="width">Enter Width</label>
-                            <input type="text" class="form-control" id="width" placeholder="Enter Width" name="wdth_rec">
+                            <input type="text" class="form-control" id="width_rec" placeholder="Enter Width" name="wdth_rec">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -61,13 +63,27 @@ require_once '../private/initialize.php';
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="height">Enter Min Charge</label>
+                            <input type="text" class="form-control" id="min_charge_rec" placeholder="Enter Min Charge" name="min_charge_rec">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="width">Enter Price Per Sq.m2</label>
+                            <input type="text" class="form-control" id="price_rec" placeholder="Enter Price Per Sq.m2" name="price_rec">
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="width_div" style="display:none">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="height">Enter Width</label>
-                            <input type="text" class="form-control" id="width" placeholder="Enter Width" name="width_sq_cir">
+                            <input type="text" class="form-control" id="width_sq_cir" placeholder="Enter Width" name="width_sq_cir">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -78,18 +94,33 @@ require_once '../private/initialize.php';
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="height">Enter Min Charge</label>
+                            <input type="text" class="form-control" id="min_charge_sq_cir" placeholder="Enter Min Charge" name="min_charge_sq_cir">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="width">Enter Price Per Sq.m2</label>
+                            <input type="text" class="form-control" id="price_sq_cir" placeholder="Enter Price Per Sq.m2" name="price_sq_cir">
+                        </div>
+                    </div>
+                </div>
             </div>
             <button type="button" class="btn btn-primary" id="cal_price">Calculate Price</button>
             <hr>
-            <table class="table table-bordered">
+            <table class="table table-bordered cal-table">
                 <thead>
                     <tr>
                         <th>widh with bleed (mm)</th>
                         <th>height with bleed (mm)</th>
                         <th>stickers per row</th>
                         <th>stikcer per row rounded</th>
+                        <th>number of stickers</th>
                         <th>no of rows needed in mtr</th>
-                        <th>hiefht in mtr needed</th>
+                        <th>height in mtr needed</th>
                         <th>price in total sq.m</th>
                         <th>price total inc min charge</th>
                     </tr>
@@ -106,6 +137,9 @@ require_once '../private/initialize.php';
         </div>
     </main>
 
+
+    <br>
+    <br>
 
     <?php include '../private/shared/footer.php' ?>
     <!-- Bootstrap core JavaScript

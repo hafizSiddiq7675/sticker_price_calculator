@@ -122,7 +122,7 @@ $(document).ready(function()
         stickerType.on('change',function()
         {
             let id = $(this).val();
-            if(id == 0) 
+            if(id == 0)
             {
                 $('#height_width_div').hide();
                 $('#width_div').hide();
@@ -147,5 +147,20 @@ $(document).ready(function()
                 pageFunctions.buildCalTable();
            }
         });
+        if($('#price_id').val() !== '')
+        {
+            let width   = $('#width').val();
+            let height  = $('#height').val();
+            if(width === height) 
+            {
+               $('#sticker_type').val('square_circle').trigger('change');
+            }
+            else
+            {
+                $('#sticker_type').val('ractangle').trigger('change');
+            }
+            calPrice.trigger('click');
+        }
     });
+    
 });

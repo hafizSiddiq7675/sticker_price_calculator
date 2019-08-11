@@ -59,6 +59,20 @@ function my_autoload(string $class)
         include 'class_library/' . $class . '.php';
     }
 }
+
+/**
+ * Sanitize For HTML Output.
+ *
+ * This function is a shorthand version of htmlspecialchars().
+ *
+ * @param string $str The string needing to be sanitized.
+ * @return string The santized string.
+ */
+function h($str = ""): string
+{
+    return htmlspecialchars($str);
+}
+
 spl_autoload_register('my_autoload');
 
 /*

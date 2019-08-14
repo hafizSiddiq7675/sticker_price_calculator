@@ -18,7 +18,8 @@ if($sticker_type === 'square_circle')
         $result = $obj->create();
         if($result) 
         {
-            header('Location: /sticker-price-calculator/site/');
+            $_SESSION['number'] = $price['id'];
+            header('Location: '. BASE_URL);
         }
         else
         {
@@ -38,7 +39,7 @@ if($sticker_type === 'square_circle')
         $result = $obj->update('id',$price['id']);
         if($result)
         {
-            header('Location: /sticker-price-calculator/site/');
+            header('Location: '. BASE_URL);
         }
         else
         {
@@ -62,7 +63,8 @@ else
         $result = $obj->create();
         if($result) 
         {
-            header('Location: /sticker-price-calculator/site/');
+            $_SESSION['number'] = $price['id'];
+            header('Location: '. BASE_URL);
         }
         else
         {
@@ -82,7 +84,7 @@ else
         $result = $obj->update('id',$price['id']);
         if($result)
         {
-            header('Location: /sticker-price-calculator/site/');
+            header('Location: '. BASE_URL);
         }
         else
         {

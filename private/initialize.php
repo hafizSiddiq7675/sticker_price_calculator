@@ -36,7 +36,9 @@ const SHARED_PATH = PRIVATE_PATH . '/shared';
 $site_end = strpos($_SERVER['SCRIPT_NAME'], '/site') + 5;
 $doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $site_end);
 define("WWW_ROOT", $doc_root);
-
+$url      = "http://" . $_SERVER['HTTP_HOST'] . WWW_ROOT;
+$validURL = str_replace("&", "&amp", $url);
+define("BASE_URL", $validURL);
 require_once('database.php');
 
 ini_set('log_errors', 'On');

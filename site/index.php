@@ -20,9 +20,16 @@ $prices = Price::select_with_order();
     <br>
     <!-- Begin page content -->
     <main role="main" class="container">
-        <a href="/sticker-price-calculator/site/create.php" target="_blank"><button class="btn btn-primary">Create New</button></a>
+        <a href="<?php echo BASE_URL . "/create.php" ?>" target="_blank"><button class="btn btn-primary">Create New</button></a>
+        <?php if(isset($_SESSION['number'])) 
+        {
+       echo '<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Congratulation!</strong> Quetation has been stored with number = <strong>'. $_SESSION['number'] .'</strong>, you can search the number in the following table to edit.
+        </div>';
+        }
+        ?>
         <hr>
-        
         <table id="data" class="table table-bordered">
             <thead>
                 <tr>
@@ -59,7 +66,7 @@ $prices = Price::select_with_order();
                     echo '<td>' . h(number_format($price['price'], 2)) . '</td>' . PHP_EOL;
                     echo '<td>' . h($price['quantity']) . '</td>' . PHP_EOL;
                     echo '<td>' . h(number_format($price['min_charge'], 2)) . '</td>' . PHP_EOL;
-                    echo '<td><a href="/sticker-price-calculator/site/edit.php?id=' .$price['id']. '"<button class="btn btn-success">Edit</button></a></td>' . PHP_EOL;
+                    echo '<td><a href="' . BASE_URL . '/edit.php?id=' . $price['id'] . '"<button class="btn btn-success">Edit</button></a></td>' . PHP_EOL;
                     echo '</tr>' . PHP_EOL;
                 }
                 ?>

@@ -15,7 +15,7 @@ require_once '../private/initialize.php';
     <main role="main" class="container">
     <input type="hidden" id="widht">
     <input type="hidden" id="height">
-        <form method="post" action="/sticker-price-calculator/site/db_action.php" id="price_cal_form">
+        <form method="post" action="<?php echo BASE_URL . "/db_action.php" ?>" id="price_cal_form">
         <input type="hidden" id="price_id" name="price_id">
             <div class="row">
                 <div class="col-md-12">
@@ -111,6 +111,9 @@ require_once '../private/initialize.php';
                         <th>height in mtr needed</th>
                         <th>price in total sq.m</th>
                         <th>price total inc min charge</th>
+                        <th>Rount Up</th>
+                        <th>Based On 50 qty</th>
+                        <th>Savings</th>
                     </tr>
                 </thead>
                 <tbody id="calculations">

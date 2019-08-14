@@ -73,10 +73,11 @@ $(document).ready(function()
                     }
                });
                var tr = '';
-               let width        = 0;
-               let height       = 0;
-               let price        = 0;
-               let minCharge    = 0;
+               let width                = 0;
+               let height               = 0;
+               let price                = 0;
+               let minCharge            = 0;
+               let firstRoundPrice      = 0;
                if($('#height_width_div').is(':visible')) 
                {
                     width     = parseInt($('#width_rec').val());
@@ -92,15 +93,21 @@ $(document).ready(function()
                    minCharge = parseFloat($('#min_charge_sq_cir').val()).toFixed(2);
                }
 
-               $.each(indexes,function(key,value){
-                let widthWithBleed      = (width + 8);
-                let heightWithBleed     = (height + 8);
+               $.each(indexes,function(key,value) {
+                let widthWithBleed      = (eval(width) + 8);
+                let heightWithBleed     = (eval(height) + 8);
                 let stickerPerRow       = parseFloat(1250/widthWithBleed).toFixed(6);
                 let stickerPerRowRound  = Math.floor(stickerPerRow); 
                 let noOfRowsInMtr       = parseFloat(value/stickerPerRowRound).toFixed(2);
                 let heightInMtr         = parseFloat((heightWithBleed * noOfRowsInMtr)/1000).toFixed(2);
-                let priceInTotSqm       = parseFloat(heightInMtr * price).toFixed(2);
+                let priceInTotSqm       = parseFloat(heightInMtr * eval(price)).toFixed(2);
                 let priceTotInCharge    = eval(priceInTotSqm) + eval(40.00);
+                let roundTotInCharge    = Math.ceil(priceTotInCharge);
+                if(key == 0) {
+                    firstRoundPrice = roundTotInCharge;
+                }
+                let baseOn50Qty         = (eval(value)/eval(50.00)) * eval(firstRoundPrice);
+                let savings             = (Math.abs(eval(roundTotInCharge)-eval(baseOn50Qty))/eval(baseOn50Qty) * 100);
                 tr += '<tr class="rowCal">';
                 tr += '<td>' + widthWithBleed +'</td>';
                 tr += '<td>' + heightWithBleed +'</td>';
@@ -111,6 +118,15 @@ $(document).ready(function()
                 tr += '<td>' + heightInMtr + '</td>';
                 tr += '<td>£' + priceInTotSqm +'</td>';
                 tr += '<td>£' + parseFloat(priceTotInCharge).toFixed(2) +'</td>';
+                tr += '<td>£' + parseFloat(roundTotInCharge).toFixed(2) +'</td>';
+                if(key == 0) {
+                    tr += '<td></td>';
+                    tr += '<td></td>';
+                }
+                else {
+                    tr += '<td>' + parseFloat(baseOn50Qty).toFixed(2) +'</td>'
+                    tr += '<td>' + parseFloat(savings).toFixed(2) +'%</td>'
+                }
                 tr += '</tr>';
                });
                $('.cal-table tr.rowCal').remove();

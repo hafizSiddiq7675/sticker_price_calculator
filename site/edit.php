@@ -13,7 +13,7 @@ $price = Price::find_by_anything($id,'id',false);
     <br>
     <!-- Begin page content -->
     <main role="main" class="container">
-        <form method="post" action="/sticker-price-calculator/site/db_action.php" id="price_cal_form">
+        <form method="post" action="<?php echo BASE_URL . "/db_action.php" ?>" id="price_cal_form">
         <input type="hidden" id="price_id" value="<?php echo $price['id']?>" name="price_id">
         <input type="hidden" id="width" value="<?php echo $price['width']?>">
         <input type="hidden" id="height" value="<?php echo $price['height']?>">
@@ -111,6 +111,9 @@ $price = Price::find_by_anything($id,'id',false);
                         <th>height in mtr needed</th>
                         <th>price in total sq.m</th>
                         <th>price total inc min charge</th>
+                        <th>Rount Up</th>
+                        <th>Based On 50 qty</th>
+                        <th>Savings</th>
                     </tr>
                 </thead>
                 <tbody id="calculations">

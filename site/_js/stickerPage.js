@@ -96,11 +96,11 @@ $(document).ready(function()
                $.each(indexes,function(key,value) {
                 let widthWithBleed      = (eval(width) + 8);
                 let heightWithBleed     = (eval(height) + 8);
-                let stickerPerRow       = parseFloat(1250/widthWithBleed).toFixed(6);
+                let stickerPerRow       = (1250/widthWithBleed);
                 let stickerPerRowRound  = Math.floor(stickerPerRow); 
-                let noOfRowsInMtr       = parseFloat(value/stickerPerRowRound).toFixed(2);
-                let heightInMtr         = parseFloat((heightWithBleed * noOfRowsInMtr)/1000).toFixed(2);
-                let priceInTotSqm       = parseFloat(heightInMtr * eval(price)).toFixed(2);
+                let noOfRowsInMtr       = value/stickerPerRowRound;
+                let heightInMtr         = (heightWithBleed * noOfRowsInMtr)/1000;
+                let priceInTotSqm       = heightInMtr * eval(price);
                 let priceTotInCharge    = eval(priceInTotSqm) + eval(40.00);
                 let roundTotInCharge    = Math.ceil(priceTotInCharge);
                 if(key == 0) {
@@ -111,12 +111,12 @@ $(document).ready(function()
                 tr += '<tr class="rowCal">';
                 tr += '<td>' + widthWithBleed +'</td>';
                 tr += '<td>' + heightWithBleed +'</td>';
-                tr += '<td>' + stickerPerRow + '</td>';
+                tr += '<td>' + stickerPerRow.toFixed(6) + '</td>';
                 tr += '<td>' + stickerPerRowRound + '</td>';
                 tr += '<td>' + value +'</td>';
-                tr += '<td>' + noOfRowsInMtr +'</td>';
-                tr += '<td>' + heightInMtr + '</td>';
-                tr += '<td>£' + priceInTotSqm +'</td>';
+                tr += '<td>' + noOfRowsInMtr.toFixed(2) +'</td>';
+                tr += '<td>' + heightInMtr.toFixed(2) + '</td>';
+                tr += '<td>£' + priceInTotSqm.toFixed(2) +'</td>';
                 tr += '<td>£' + parseFloat(priceTotInCharge).toFixed(2) +'</td>';
                 tr += '<td>£' + parseFloat(roundTotInCharge).toFixed(2) +'</td>';
                 if(key == 0) {
